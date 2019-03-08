@@ -1,10 +1,9 @@
-package com.company.Calc;
+package com.company.calc;
 
 
-public class RomanToArabicConverter {
+class RomanToArabicConverter {
 
-    private int value(char romanNumber)
-    {
+    private int value(char romanNumber){
         if (romanNumber == 'I')
             return 1;
         if (romanNumber == 'V')
@@ -22,8 +21,7 @@ public class RomanToArabicConverter {
         return -1;
     }
 
-    public int romanToDecimal(String romanSymbol)
-    {
+    int romanToDecimal(String romanSymbol){
         // Initialize result
         int result = 0;
 
@@ -31,36 +29,28 @@ public class RomanToArabicConverter {
         {
             // Getting value of symbol s[i]
             int firstSymbol = value(romanSymbol.charAt(i));
-
             // Getting value of symbol s[i+1]
             if (i+1 <romanSymbol.length())
             {
                 int secondSymbol = value(romanSymbol.charAt(i+1));
 
                 // Comparing both values
-                if (firstSymbol >= secondSymbol)
-                {
+                if (firstSymbol >= secondSymbol){
                     // Value of current symbol is greater
                     // or equalto the next symbol
                     result = result + firstSymbol;
-                }
-                else
-                {
+                } else {
                     result = result + secondSymbol - firstSymbol;
                     i++; // Value of current symbol is
                     // less than the next symbol
                 }
-            }
-            else
-            {
+            } else {
                 result = result + firstSymbol;
                 i++;
             }
         }
-
         return result;
     }
-
 }
 
 

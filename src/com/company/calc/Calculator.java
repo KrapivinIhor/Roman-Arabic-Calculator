@@ -1,13 +1,16 @@
-package com.company.Calc;
+package com.company.calc;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class CalculationMachine {
+public class Calculator {
 
     private Scanner scanner = new Scanner(System.in);
     private RomanToArabicConverter romanToArabicConverter = new RomanToArabicConverter();
 
-    public void choseTheType(){
+    public void choseTheType() throws IOException {
         System.out.println("Please chose type of numbers: for Roman Numbers write \"roman\"," +
                 " for Arabic Numbers write \"arabic\"");
         String typeOfNumbers = scanner.next();
@@ -18,19 +21,32 @@ public class CalculationMachine {
         }
     }
 
-
-    void startForArabic() {
-        System.out.println("Enter the first arabic value: ");
+    private void startForArabic() throws IOException {
+        /*System.out.println("Enter the first arabic value: ");
         double firstArabicValue = scanner.nextDouble();
         System.out.println("Enter the second arabic value: ");
         double secondArabicValue = scanner.nextDouble();
         System.out.println("Select the operation sign \"+\" for sum, " +
                 "\"-\" for minus, \"*\" for multiplication, \"/\" for division: ");
         String operationSign = scanner.next();
+        calculatedResult(firstArabicValue, secondArabicValue, operationSign);*/
+
+        System.out.println("Please Enter Your expression in format (first Double number(0.0) math operation " +
+                           "(+, -, /, *) second Double number(0.0))");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String expressionLine = bufferedReader.readLine();
+        char[] expression = expressionLine.toCharArray();
+        char[] newExpression = new char[expression.length - 2];
+        System.arraycopy(expression, 1, newExpression, 0, newExpression.length );
+        String string = String.copyValueOf(newExpression);
+        String[] afterSplit = string.split(" ");
+        double firstArabicValue = Double.parseDouble(afterSplit[0]);
+        double secondArabicValue = Double.parseDouble(afterSplit[2]);
+        String operationSign = afterSplit[1];
         calculatedResult(firstArabicValue, secondArabicValue, operationSign);
     }
 
-    void startForRoman() {
+    private void startForRoman() {
         System.out.println("Enter the first roman value: ");
         String firstValue = scanner.next();
         System.out.println("Enter the second roman value: ");
@@ -66,9 +82,5 @@ public class CalculationMachine {
                 return 0;
         }
         return result;
-
     }
-
-
-
 }
