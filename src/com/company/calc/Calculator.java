@@ -35,15 +35,7 @@ public class Calculator {
                            "(+, -, /, *) second Double number(0.0))");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String expressionLine = bufferedReader.readLine();
-        char[] expression = expressionLine.toCharArray();
-        char[] newExpression = new char[expression.length - 2];
-        System.arraycopy(expression, 1, newExpression, 0, newExpression.length );
-        String string = String.copyValueOf(newExpression);
-        String[] afterSplit = string.split(" ");
-        double firstArabicValue = Double.parseDouble(afterSplit[0]);
-        double secondArabicValue = Double.parseDouble(afterSplit[2]);
-        String operationSign = afterSplit[1];
-        calculatedResult(firstArabicValue, secondArabicValue, operationSign);
+        System.out.println("Result of your expression is: " + EvaluateString.evaluate(expressionLine));
     }
 
     private void startForRoman() {
